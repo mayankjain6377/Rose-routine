@@ -1,0 +1,201 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: #FFF8FA;
+    color: #2D1B2E;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #FFF0F5;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #E75480;
+    border-radius: 99px;
+  }
+}
+
+@layer components {
+  .glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(231, 84, 128, 0.15);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(231, 84, 128, 0.08);
+  }
+
+  .glass-card-dark {
+    background: rgba(231, 84, 128, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(231, 84, 128, 0.2);
+    border-radius: 24px;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #E75480, #C23B6A);
+    color: white;
+    border-radius: 16px;
+    padding: 14px 28px;
+    font-weight: 600;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 16px rgba(231, 84, 128, 0.4);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(231, 84, 128, 0.5);
+  }
+
+  .btn-primary:active {
+    transform: translateY(0px);
+  }
+
+  .btn-secondary {
+    background: rgba(231, 84, 128, 0.1);
+    color: #E75480;
+    border-radius: 16px;
+    padding: 14px 28px;
+    font-weight: 600;
+    font-size: 15px;
+    border: 1.5px solid rgba(231, 84, 128, 0.3);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .btn-secondary:hover {
+    background: rgba(231, 84, 128, 0.15);
+    transform: translateY(-1px);
+  }
+
+  .input-field {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1.5px solid rgba(231, 84, 128, 0.2);
+    border-radius: 14px;
+    padding: 13px 16px;
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+    color: #2D1B2E;
+    transition: all 0.2s ease;
+    outline: none;
+  }
+
+  .input-field:focus {
+    border-color: #E75480;
+    box-shadow: 0 0 0 3px rgba(231, 84, 128, 0.12);
+    background: white;
+  }
+
+  .input-field::placeholder {
+    color: #B8A8B9;
+  }
+
+  .page-container {
+    max-width: 430px;
+    margin: 0 auto;
+    min-height: 100vh;
+    position: relative;
+    background: #FFF8FA;
+  }
+
+  .slider-thumb::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    border: 3px solid #E75480;
+    box-shadow: 0 2px 8px rgba(231, 84, 128, 0.4);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .slider-thumb::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+  }
+
+  .slider-thumb::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    border: 3px solid #E75480;
+    box-shadow: 0 2px 8px rgba(231, 84, 128, 0.4);
+    cursor: pointer;
+  }
+
+  .slider-thumb::-webkit-slider-runnable-track {
+    height: 6px;
+    border-radius: 99px;
+    background: linear-gradient(to right, #E75480 var(--slider-progress, 0%), #FFD6E7 var(--slider-progress, 0%));
+  }
+
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 430px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(231, 84, 128, 0.12);
+    z-index: 100;
+    padding: 8px 0 max(8px, env(safe-area-inset-bottom));
+  }
+
+  .tag-pill {
+    background: rgba(231, 84, 128, 0.1);
+    color: #E75480;
+    border-radius: 99px;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+}
+
+/* Animated gradient background for hero */
+.hero-gradient {
+  background: linear-gradient(135deg, #FFE0EC 0%, #FFF0F5 50%, #F5E6FF 100%);
+}
+
+/* Custom progress ring */
+.progress-ring-circle {
+  transition: stroke-dashoffset 0.5s ease-in-out;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
+/* Splash screen animation */
+@keyframes splash-fade {
+  0% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; pointer-events: none; }
+}
+
+/* Task color variants */
+.task-color-rose { background: rgba(231, 84, 128, 0.12); border-left: 3px solid #E75480; }
+.task-color-lavender { background: rgba(200, 162, 255, 0.12); border-left: 3px solid #C8A2FF; }
+.task-color-gold { background: rgba(244, 201, 93, 0.12); border-left: 3px solid #F4C95D; }
+.task-color-green { background: rgba(82, 196, 155, 0.12); border-left: 3px solid #52C49B; }
+.task-color-blue { background: rgba(100, 162, 255, 0.12); border-left: 3px solid #64A2FF; }
+.task-color-orange { background: rgba(255, 162, 100, 0.12); border-left: 3px solid #FFA264; }
