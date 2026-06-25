@@ -10,6 +10,7 @@ import {
 } from '../utils/storage';
 import { achievements as achievementDefs } from '../data/defaultTasks';
 import { getRandomQuote } from '../data/quotes';
+import { requestReminderPermission, runReminderScan } from '../utils/reminders';
 
 const AppContext = createContext(null);
 
@@ -27,6 +28,34 @@ export const AppProvider = ({ children }) => {
   useEffect(() => {
     setQuote(getRandomQuote());
   }, []);
+
+  useEffect(() => {
+    if (!settings?.notifications || typeof window === 'undefined') return undefined;
+
+    let cancelled = false;
+    let intervalId = null;
+
+    const startReminderScan = async () => {
+      if (typeof Notification === 'undefined') return;
+
+      if (Notification.permission === 'default') {
+        await requestReminderPermission();
+      }
+
+      if (cancelled || Notification.permission !== 'granted') return;
+
+      const scan = () => runReminderScan(timetable);
+      scan();
+      intervalId = window.setInterval(scan, 30 * 1000);
+    };
+
+    startReminderScan();
+
+    return () => {
+      cancelled = true;
+      if (intervalId) window.clearInterval(intervalId);
+    };
+  }, [settings?.notifications, timetable]);
 
   const todayAvg = getDayAverage(todayProgress, timetable);
 

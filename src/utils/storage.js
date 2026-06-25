@@ -7,6 +7,7 @@ const KEYS = {
   ACHIEVEMENTS: 'rr_achievements',
   SETTINGS: 'rr_settings',
   LAST_QUOTE: 'rr_last_quote',
+  REMINDER_LOG: 'rr_reminder_log',
 };
 
 // Generic get/set
@@ -99,6 +100,9 @@ export const unlockAchievement = (id) => {
 // Settings
 export const getSettings = () => get(KEYS.SETTINGS) || { challenge: '21day', notifications: true };
 export const setSettings = (s) => set(KEYS.SETTINGS, s);
+
+export const getReminderLog = () => get(KEYS.REMINDER_LOG) || {};
+export const setReminderLog = (log) => set(KEYS.REMINDER_LOG, log);
 
 // Helper: today as YYYY-MM-DD
 export const todayStr = () => dateToStr(new Date());
